@@ -10,10 +10,11 @@ import faiss
 mcp = FastMCP(name="RAG MCP Server",
               instructions="This server provides tools for querying a local RAG vector database with FAISS.")
 
-# Konfigurasjon - tilpass disse til din RAG database
-VECTOR_DB_DIR = "/Users/simoneidem/Projects/Evidi/NDC AI 2025/MCP Eksemepl dag 1/vector_db"
-FAISS_INDEX_PATH = os.path.join(VECTOR_DB_DIR, "index.faiss")
-CHUNKS_PATH = os.path.join(VECTOR_DB_DIR, "chunks.pkl")
+# Konfigurasjon - bruk relativ sti som fungerer både lokalt og i deployment
+SCRIPT_DIR = Path(__file__).parent.absolute()
+VECTOR_DB_DIR = SCRIPT_DIR / "vector_db"
+FAISS_INDEX_PATH = VECTOR_DB_DIR / "index.faiss"
+CHUNKS_PATH = VECTOR_DB_DIR / "chunks.pkl"
 
 # Initialiser OpenAI klient for embeddings
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
