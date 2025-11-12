@@ -32,7 +32,7 @@ class FAISSRag:
     def load_data(self):
         """Laster FAISS index og chunks fra disk"""
         if Path(self.index_path).exists():
-            self.index = faiss.read_index(self.index_path)
+            self.index = faiss.read_index(str(self.index_path))
             print(f"✅ Loaded FAISS index with {self.index.ntotal} vectors")
         else:
             print(f"⚠️  Warning: {self.index_path} not found")
@@ -40,7 +40,7 @@ class FAISSRag:
             self.index = faiss.IndexFlatL2(1536)  # text-embedding-3-small dimension
         
         if Path(self.chunks_path).exists():
-            with open(self.chunks_path, 'rb') as f:
+            with open(str(self.chunks_path), 'rb') as f:
                 self.chunks = pickle.load(f)
             print(f"✅ Loaded {len(self.chunks)} chunks")
         else:
