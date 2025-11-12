@@ -9,9 +9,6 @@ venv/
 ENV/
 env/
 
-# Vector database (regenerate with ingestion.py)
-vector_db/
-
 # IDE
 .vscode/
 .idea/
