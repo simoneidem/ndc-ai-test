@@ -12,7 +12,7 @@ mcp = FastMCP(name="RAG MCP Server",
 
 # Konfigurasjon - bruk relativ sti som fungerer både lokalt og i deployment
 SCRIPT_DIR = Path(__file__).parent.absolute()
-VECTOR_DB_DIR = SCRIPT_DIR / "vector_db"
+VECTOR_DB_DIR = SCRIPT_DIR.parent / "ingestion" / "vector_db"
 FAISS_INDEX_PATH = VECTOR_DB_DIR / "index.faiss"
 CHUNKS_PATH = VECTOR_DB_DIR / "chunks.pkl"
 

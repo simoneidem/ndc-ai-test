@@ -1,4 +1,4 @@
-# �� RAG MCP Server - Snakk med din lokale kunnskapsbase!
+# 🚀 RAG MCP Server - Snakk med din lokale kunnskapsbase!
 
 Denne MCP serveren lar deg snakke med Claude Desktop og få svar fra en lokal vektor database med 5 temaer:
 
@@ -8,18 +8,49 @@ Denne MCP serveren lar deg snakke med Claude Desktop og få svar fra en lokal ve
 - 🌳 **Amazonas** - biodiversitet, avskoging, urfolk, klimapåvirkning
 - 🏭 **Industriell revolusjon** - dampmaskinen, jernbane, urbanisering, arbeidsforhold
 
-## 📁 Viktige filer
+## 📁 Prosjektstruktur
 
-- **rag_server.py** - MCP server med 10 tools
-- **ingestion.py** - Lager vektor database
-- **knowledge_base.txt** - Tekstfil med kunnskap
-- **vector_db/** - FAISS database
+```
+├── ingestion/          # Embedding og vektor database
+│   ├── ingestion.py
+│   ├── knowledge_base.txt
+│   └── vector_db/
+├── mcp-server/         # MCP server med 10 tools
+│   └── rag_server.py
+├── mcp-client/         # MCP klient (Claude Desktop)
+└── requirements.txt    # Python avhengigheter
+```
 
-## ✅ Setup (allerede gjort!)
+## 🔧 Setup
 
-✓ Vektor database opprettet (11 chunks, 1536 dimensjoner)
-✓ Claude Desktop config satt opp
-✓ Alle pakker installert
+### 1. Installer avhengigheter
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Generer vektor database (hvis ikke gjort)
+```bash
+cd ingestion
+python ingestion.py
+```
+
+### 3. Konfigurer Claude Desktop
+
+Rediger `~/Library/Application Support/Claude/claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "rag-knowledge-base": {
+      "command": "/path/to/.venv/bin/python",
+      "args": ["/path/to/mcp-server/rag_server.py"],
+      "env": {
+        "OPENAI_API_KEY": "your-api-key"
+      }
+    }
+  }
+}
+```
 
 ## 🚀 START HER - Bruk med Claude Desktop
 
